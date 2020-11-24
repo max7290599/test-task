@@ -1,33 +1,27 @@
-import path from 'path';
-import fs from 'fs';
+import path from "path";
+import http from "http";
+import express from "express";
+const request = require("request");
 
-import React from 'react';
-import express from 'express';
-import ReactDOMServer from 'react-dom/server';
+const DIST_DIR = path.join(__dirname, "../../dist"); // NEW
+const HTML_FILE = path.join(DIST_DIR, "index.html"); // NEW
 
-import Root from '../root';
-
-const PORT = process.env.PORT || 3006;
-const app = express();
-
-app.get('/', (req, res) => {
-    const app = ReactDOMServer.renderToString(<Root />);
-
-    const indexFile = path.resolve('./public/index.html');
-    fs.readFile(indexFile, 'utf8', (err, data) => {
-    if (err) {
-        console.error('Something went wrong:', err);
-        return res.status(500).send('Oops, better luck next time!');
-    }
-
-    return res.send(
-        data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
-    );
-    });
+let app = express();
+app.use(express.static(DIST_DIR)); // NEW
+app.get("/", (req, res) => {
+  res.sendFile(HTML_FILE); // EDIT
 });
 
-app.use(express.static('./build'));
+var options = {
+  url: "http://test.clevertec.ru/tt/meta/",
+  method: "POST",
+};
 
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+app.get("/meta", (req, response) => {
+    request(options, function (err, res, body) {
+        response.send(body);
+  });
 });
+
+
+app.listen(8080, () => console.log("Example app listening on port 3000!"));

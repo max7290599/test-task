@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore';
-import App from './components/App/App';
+import MainPage from './containers/main-page/main-page';
 
 const store = configureStore();
 
 const Root = () => {
 return (<Provider store={store}>
-    <App />
+    <MainPage />
         </Provider>);
 }
 
