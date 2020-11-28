@@ -42,6 +42,7 @@
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.0.4",
     "nodemon": "^2.0.6",
+    "svg-inline-loader": "^0.8.2",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14"
