@@ -1,6 +1,8 @@
 
 const initialState = {
-    data: {}
+    data: {
+        
+    }
 };
 
 export default (state = initialState, action) => {

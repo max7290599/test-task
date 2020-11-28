@@ -1,0 +1,1 @@
+export const windowSelector = (state) => state.dialogWindow;
