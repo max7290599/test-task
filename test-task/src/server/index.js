@@ -17,11 +17,25 @@ var options = {
   method: "POST",
 };
 
+var option = {
+  url: "http://test.clevertec.ru/tt/data/",
+  method: "POST",
+  body: JSON.stringify(data)
+};
+
 app.get("/meta", (req, response) => {
     request(options, function (err, res, body) {
         response.send(body);
   });
 });
+
+
+app.get("/data", (req, response) => {
+  request(option, function (err, res, body) {
+    response.send(body);
+  });
+});
+
 
 
 app.listen(8080, () => console.log("Example app listening on port 3000!"));
