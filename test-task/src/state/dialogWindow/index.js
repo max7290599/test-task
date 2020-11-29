@@ -1,8 +1,8 @@
-import { OPEN_DIALOG, CLOSE_DIALOG } from './action';
+import { CLOSE_DIALOG } from './action';
 
-export function  dialogWindow(state = {isOpen: false}, action) {
+export default (state = {isOpen: false}, action) => {
 	switch (action.type) {
-        case OPEN_DIALOG:
+        case 'RESPONSE_FROM_THE_SERVER':
             return {
             ...state,
             isOpen: true,

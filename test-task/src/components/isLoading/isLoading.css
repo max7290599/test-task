@@ -1,0 +1,23 @@
+.dialog-window {
+    width: 300px;
+    height: 140px;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    z-index:100;
+}
+
+.dialog-window .plate__content {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialog-window .plate__title {
+    margin-bottom: 12px;
+}
+
+.dialog-window .button {
+    margin-top: 36px;
+}

@@ -1,1 +1,1 @@
-export const windowSelector = (state) => state.dialogWindow;
+export const windowSelector = (state) => state.dialogWindow.isOpen;

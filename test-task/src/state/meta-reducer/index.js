@@ -1,8 +1,7 @@
 
 const initialState = {
-    data: {
-        
-    }
+    data: {},
+    isLoaded: false,
 };
 
 export default (state = initialState, action) => {
@@ -10,9 +9,15 @@ export default (state = initialState, action) => {
         case 'GET_META_SUCCESS':
             return {
                 ...state,
-                data: action.data
-            }
-    default:
+                data: action.data,
+                isLoaded: true
+            };
+        case 'RESPONSE_FROM_THE_SERVER':
+            return {
+                ...state,
+                response: action.response,
+            };
+        default:
         return state;
     }
 }

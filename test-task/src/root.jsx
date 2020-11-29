@@ -5,10 +5,10 @@ import MainPage from './containers/main-page/main-page';
 
 const store = configureStore();
 
-const Root = () => {
-return (<Provider store={store}>
-    <MainPage />
-        </Provider>);
-}
+const Root = () => (
+    <Provider store={store}>
+        <MainPage />
+    </Provider>
+);
 
 export default Root;

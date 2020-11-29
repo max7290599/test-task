@@ -1,25 +1,42 @@
 import path from "path";
-import http from "http";
 import express from "express";
+import bodyParser from 'body-parser';
 const request = require("request");
 
-const DIST_DIR = path.join(__dirname, "../../dist"); // NEW
-const HTML_FILE = path.join(DIST_DIR, "index.html"); // NEW
+const DIST_DIR = path.join(__dirname, "../../dist");
+const HTML_FILE = path.join(DIST_DIR, "index.html");
 
 let app = express();
-app.use(express.static(DIST_DIR)); // NEW
+app.use(express.static(DIST_DIR));
+app.use(bodyParser.json());
 app.get("/", (req, res) => {
-  res.sendFile(HTML_FILE); // EDIT
+  res.sendFile(HTML_FILE);
 });
 
-var options = {
+
+const options = {
   url: "http://test.clevertec.ru/tt/meta/",
   method: "POST",
 };
 
+const option = {
+  headers: {
+    "content-type": "application/json",
+  },
+  url: "http://test.clevertec.ru/tt/data/",
+  method: "POST",
+};
+
 app.get("/meta", (req, response) => {
-    request(options, function (err, res, body) {
-        response.send(body);
+  request(options, (err, res, body) => {
+    response.send(body);
+  });
+});
+
+
+app.post("/data", (req, response) => {
+  request({ ...option, body: req.body, json: true }, (err, res, body) => {
+    response.send(body);
   });
 });
 

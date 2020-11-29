@@ -9,32 +9,29 @@ import FieldList from '../fieldList/fieldList';
 
 import './DinamicForm.css';
 
-const DinamicForm = (props) => {
+const DinamicForm = ({ meta, onChangeForm, handleSubmitForm }) => {
 
-    const handlerClick = () =>{
-        props.getOpenModal()
-    } 
-return (
+    return (
+        <>
         <Form>
-        <Heading>
-            {props.meta.title}
-        </Heading>
-        {props.meta.fields?
-        (props.meta.fields.map(item => {
-            switch(item.name) {
-                case 'text': 
-                return <InputText addForm={props.addForm} field={item} />
-                break;
-                case 'numeric': 
-                return    <InputNumber addForm={props.addForm} field={item} />
-                break;
-                case 'list':  
-                return    <FieldList addForm={props.addForm} field={item} />
-                break;
-            }
-        })): console.log(')))))))))))))')}
-        <Button type="submit" onClick={handlerClick}>Отправить</Button>
+            <Heading>
+                {meta.title}
+            </Heading>
+            {meta.fields &&
+                (meta.fields.map(item => {
+                    switch (item.name) {
+                        case 'text':
+                            return <InputText onChange={onChangeForm} field={item} />
+                        case 'numeric':
+                            return <InputNumber onChange={onChangeForm} field={item} />
+                        case 'list':
+                            return <FieldList onChange={onChangeForm} field={item} />
+                    }
+                }))}
+            <Button type="submit" onClick={handleSubmitForm}>Отправить</Button>
         </Form>
+        <img src={meta.image} />
+        </>
     );
 }
 
