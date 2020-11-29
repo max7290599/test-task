@@ -1,29 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Input from 'arui-feather/input';
 import Label from 'arui-feather/label';
 import FormField from 'arui-feather/form-field';
 
 
-const InputNumber = (props) => {
+const InputNumber = ({onChange, field}) => {
 
-const [error, setError]= useState(-1)
-
-const handleChange = (value) => {
-    setError( value.search(/^[0-9]*\.[0-9]+$/));
-    props.addForm({[props.field.name]:value})
-}
+    const handleChange = (value) => {
+        onChange({ [field.name]: value.replace(',', '.') })
+    }
 
     return (
         <FormField>
-        		<Label >
-					{props.field.title}
-				</Label>
-        <Input
-            type='number'
-            placeholder='Введите число'
-            error={ error ? 'Использовать разделитель точку(1.55)' : null }
-			onChange={handleChange}
-        />
+            <Label >
+                {field.title}
+            </Label>
+            <Input
+                type={field.type}
+                onChange={handleChange}
+            />
         </FormField>
     );
 }
